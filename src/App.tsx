@@ -1,37 +1,37 @@
 import "./App.css";
-import NewTodoForm from "./components/NewTodoForm";
-import TodoTable from "./components/TodoTable";
+import { NewTodoForm } from "./components/NewTodoForm";
+import { TodoTable } from "./components/TodoTable";
 import React, { useState } from "react";
 
-function App() {
+export const App = () => {
 
   const [showAddTodoForm, setShowAddTodoForm] = useState(false)
   
   const [todo, setTodo] = useState([
-    { rowNum: 1, rowDescription: "Eat healthy", rowAssigned: "HZ" },
-    { rowNum: 2, rowDescription: "Workout", rowAssigned: "Hafeez" },
-    { rowNum: 3, rowDescription: "Study", rowAssigned: "Hafeez" },
+    { rowNumber: 1, rowDescription: "Eat healthy", rowAssigned: "HZ" },
+    { rowNumber: 2, rowDescription: "Workout", rowAssigned: "Hafeez" },
+    { rowNumber: 3, rowDescription: "Study", rowAssigned: "Hafeez" },
   ]);
 
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
     let rowNum = 0;
     if (todo.length > 0) {
-      rowNum = todo[todo.length - 1].rowNum + 1;
+      rowNum = todo[todo.length - 1].rowNumber + 1;
     } else{
       rowNum = 1;
     }
       const newTodo = {
-        rowNum: rowNum,
+        rowNumber: rowNum,
         rowDescription: description,
         rowAssigned: assigned,
       };
       setTodo(todo => [...todo, newTodo])
   };
 
-  const deleteTodo = (deleteTodoNumber) =>  {
+  const deleteTodo = (deleteTodoNumber: number) =>  {
     let filtered = todo.filter(function (value){
-      return value.rowNum !== deleteTodoNumber;
+      return value.rowNumber !== deleteTodoNumber;
     });
     setTodo(filtered);
   }
@@ -61,4 +61,3 @@ function App() {
   );
 }
 
-export default App;
